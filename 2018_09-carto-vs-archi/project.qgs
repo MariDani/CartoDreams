@@ -1,42 +1,42 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="3.0.3-Girona" projectname="">
+<qgis projectname="" version="3.0.3-Girona">
   <title></title>
   <autotransaction active="0"/>
   <evaluateDefaultValues active="0"/>
   <trust active="0"/>
   <projectCrs>
     <spatialrefsys>
-      <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
-      <srsid>3452</srsid>
-      <srid>4326</srid>
-      <authid>EPSG:4326</authid>
-      <description>WGS 84</description>
-      <projectionacronym>longlat</projectionacronym>
+      <proj4>+proj=utm +zone=32 +datum=WGS84 +units=m +no_defs</proj4>
+      <srsid>3116</srsid>
+      <srid>32632</srid>
+      <authid>EPSG:32632</authid>
+      <description>WGS 84 / UTM zone 32N</description>
+      <projectionacronym>utm</projectionacronym>
       <ellipsoidacronym>WGS84</ellipsoidacronym>
-      <geographicflag>true</geographicflag>
+      <geographicflag>false</geographicflag>
     </spatialrefsys>
   </projectCrs>
   <layer-tree-group>
     <customproperties/>
-    <layer-tree-layer providerKey="ogr" expanded="1" name="route_coordinates" source="./data/route_coordinates.csv" id="route_coordinates_06e9c7ad_0d9f_4629_a761_4a4cba723c82" checked="Qt::Checked">
+    <layer-tree-layer providerKey="ogr" name="route_coordinates" source="./data/route_coordinates.csv" checked="Qt::Checked" id="route_coordinates_3f344d2d_7ef3_4aa8_898b_9952feaba48b" expanded="1">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer providerKey="ogr" expanded="1" name="route_pts_elev.shp" source="./data/route_pts_elev.shp" id="route_pts_elev_shp_377e791f_a41c_480d_b62f_d48ba199e78b" checked="Qt::Checked">
+    <layer-tree-layer providerKey="ogr" name="route_pts_elev.shp" source="./data/route_pts_elev.shp" checked="Qt::Checked" id="route_pts_elev_shp_377e791f_a41c_480d_b62f_d48ba199e78b" expanded="1">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer providerKey="ogr" expanded="1" name="route_pts" source="./data/route_pts.shp" id="route_pts_8f8d5a03_627f_400a_ad73_e0cfb2845b76" checked="Qt::Unchecked">
+    <layer-tree-layer providerKey="ogr" name="route_pts" source="./data/route_pts.shp" checked="Qt::Unchecked" id="route_pts_8f8d5a03_627f_400a_ad73_e0cfb2845b76" expanded="1">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer providerKey="ogr" expanded="1" name="route" source="./data/route.shp" id="route_3184b296_757f_469a_a0e8_909ea115cda1" checked="Qt::Checked">
+    <layer-tree-layer providerKey="ogr" name="route" source="./data/route.shp" checked="Qt::Checked" id="route_3184b296_757f_469a_a0e8_909ea115cda1" expanded="1">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer providerKey="ogr" expanded="1" name="roads" source="./data/osm/roads.shp" id="roads_fab95248_7c73_4907_99db_14f089264a7d" checked="Qt::Unchecked">
+    <layer-tree-layer providerKey="ogr" name="roads" source="./data/osm/roads.shp" checked="Qt::Unchecked" id="roads_fab95248_7c73_4907_99db_14f089264a7d" expanded="1">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer providerKey="ogr" expanded="1" name="Contours" source="./data/Contours.shx" id="Contours_36552ad4_a22a_48d0_a3be_7beaaf49be39" checked="Qt::Checked">
+    <layer-tree-layer providerKey="ogr" name="Contours" source="./data/Contours.shx" checked="Qt::Checked" id="Contours_36552ad4_a22a_48d0_a3be_7beaaf49be39" expanded="1">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer providerKey="gdal" expanded="1" name="DEM" source="./data/DEM.tif" id="DEM_bd184679_1f2d_4bd6_9746_bec7040bf6b3" checked="Qt::Checked">
+    <layer-tree-layer providerKey="gdal" name="DEM" source="./data/DEM.tif" checked="Qt::Checked" id="DEM_bd184679_1f2d_4bd6_9746_bec7040bf6b3" expanded="1">
       <customproperties/>
     </layer-tree-layer>
     <custom-order enabled="0">
@@ -46,83 +46,83 @@
       <item>route_3184b296_757f_469a_a0e8_909ea115cda1</item>
       <item>route_pts_8f8d5a03_627f_400a_ad73_e0cfb2845b76</item>
       <item>route_pts_elev_shp_377e791f_a41c_480d_b62f_d48ba199e78b</item>
-      <item>route_coordinates_06e9c7ad_0d9f_4629_a761_4a4cba723c82</item>
+      <item>route_coordinates_3f344d2d_7ef3_4aa8_898b_9952feaba48b</item>
     </custom-order>
   </layer-tree-group>
-  <snapping-settings tolerance="12" unit="1" intersection-snapping="0" enabled="0" mode="2" type="1">
+  <snapping-settings type="1" intersection-snapping="0" unit="1" tolerance="12" enabled="0" mode="2">
     <individual-layer-settings>
-      <layer-setting units="1" tolerance="12" enabled="0" id="roads_fab95248_7c73_4907_99db_14f089264a7d" type="1"/>
-      <layer-setting units="1" tolerance="12" enabled="0" id="route_3184b296_757f_469a_a0e8_909ea115cda1" type="1"/>
-      <layer-setting units="1" tolerance="12" enabled="0" id="route_pts_8f8d5a03_627f_400a_ad73_e0cfb2845b76" type="1"/>
-      <layer-setting units="1" tolerance="12" enabled="0" id="route_pts_elev_shp_377e791f_a41c_480d_b62f_d48ba199e78b" type="1"/>
-      <layer-setting units="1" tolerance="12" enabled="0" id="Contours_36552ad4_a22a_48d0_a3be_7beaaf49be39" type="1"/>
+      <layer-setting type="1" units="1" id="roads_fab95248_7c73_4907_99db_14f089264a7d" tolerance="12" enabled="0"/>
+      <layer-setting type="1" units="1" id="route_pts_8f8d5a03_627f_400a_ad73_e0cfb2845b76" tolerance="12" enabled="0"/>
+      <layer-setting type="1" units="1" id="route_3184b296_757f_469a_a0e8_909ea115cda1" tolerance="12" enabled="0"/>
+      <layer-setting type="1" units="1" id="route_pts_elev_shp_377e791f_a41c_480d_b62f_d48ba199e78b" tolerance="12" enabled="0"/>
+      <layer-setting type="1" units="1" id="Contours_36552ad4_a22a_48d0_a3be_7beaaf49be39" tolerance="12" enabled="0"/>
     </individual-layer-settings>
   </snapping-settings>
   <relations/>
-  <mapcanvas annotationsVisible="1" name="theMapCanvas">
-    <units>degrees</units>
+  <mapcanvas name="theMapCanvas" annotationsVisible="1">
+    <units>meters</units>
     <extent>
-      <xmin>8.3304984613941766</xmin>
-      <ymin>61.6341273855367362</ymin>
-      <xmax>8.33429240670667504</xmax>
-      <ymax>61.6362807058492379</ymax>
+      <xmin>463839.72048439690843225</xmin>
+      <ymin>6831337.89109444431960583</ymin>
+      <xmax>467105.13499808288179338</xmax>
+      <ymax>6836183.23588812164962292</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
       <spatialrefsys>
-        <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
-        <srsid>3452</srsid>
-        <srid>4326</srid>
-        <authid>EPSG:4326</authid>
-        <description>WGS 84</description>
-        <projectionacronym>longlat</projectionacronym>
+        <proj4>+proj=utm +zone=32 +datum=WGS84 +units=m +no_defs</proj4>
+        <srsid>3116</srsid>
+        <srid>32632</srid>
+        <authid>EPSG:32632</authid>
+        <description>WGS 84 / UTM zone 32N</description>
+        <projectionacronym>utm</projectionacronym>
         <ellipsoidacronym>WGS84</ellipsoidacronym>
-        <geographicflag>true</geographicflag>
+        <geographicflag>false</geographicflag>
       </spatialrefsys>
     </destinationsrs>
     <rendermaptile>0</rendermaptile>
   </mapcanvas>
   <legend updateDrawingOrder="true">
-    <legendlayer open="true" name="route_coordinates" showFeatureCount="0" drawingOrder="-1" checked="Qt::Checked">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" visible="1" layerid="route_coordinates_06e9c7ad_0d9f_4629_a761_4a4cba723c82"/>
+    <legendlayer checked="Qt::Checked" name="route_coordinates" showFeatureCount="0" drawingOrder="-1" open="true">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile layerid="route_coordinates_3f344d2d_7ef3_4aa8_898b_9952feaba48b" visible="1" isInOverview="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer open="true" name="route_pts_elev.shp" showFeatureCount="0" drawingOrder="-1" checked="Qt::Checked">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" visible="1" layerid="route_pts_elev_shp_377e791f_a41c_480d_b62f_d48ba199e78b"/>
+    <legendlayer checked="Qt::Checked" name="route_pts_elev.shp" showFeatureCount="0" drawingOrder="-1" open="true">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile layerid="route_pts_elev_shp_377e791f_a41c_480d_b62f_d48ba199e78b" visible="1" isInOverview="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer open="true" name="route_pts" showFeatureCount="0" drawingOrder="-1" checked="Qt::Unchecked">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" visible="0" layerid="route_pts_8f8d5a03_627f_400a_ad73_e0cfb2845b76"/>
+    <legendlayer checked="Qt::Unchecked" name="route_pts" showFeatureCount="0" drawingOrder="-1" open="true">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile layerid="route_pts_8f8d5a03_627f_400a_ad73_e0cfb2845b76" visible="0" isInOverview="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer open="true" name="route" showFeatureCount="0" drawingOrder="-1" checked="Qt::Checked">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" visible="1" layerid="route_3184b296_757f_469a_a0e8_909ea115cda1"/>
+    <legendlayer checked="Qt::Checked" name="route" showFeatureCount="0" drawingOrder="-1" open="true">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile layerid="route_3184b296_757f_469a_a0e8_909ea115cda1" visible="1" isInOverview="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer open="true" name="roads" showFeatureCount="0" drawingOrder="-1" checked="Qt::Unchecked">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" visible="0" layerid="roads_fab95248_7c73_4907_99db_14f089264a7d"/>
+    <legendlayer checked="Qt::Unchecked" name="roads" showFeatureCount="0" drawingOrder="-1" open="true">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile layerid="roads_fab95248_7c73_4907_99db_14f089264a7d" visible="0" isInOverview="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer open="true" name="Contours" showFeatureCount="0" drawingOrder="-1" checked="Qt::Checked">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" visible="1" layerid="Contours_36552ad4_a22a_48d0_a3be_7beaaf49be39"/>
+    <legendlayer checked="Qt::Checked" name="Contours" showFeatureCount="0" drawingOrder="-1" open="true">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile layerid="Contours_36552ad4_a22a_48d0_a3be_7beaaf49be39" visible="1" isInOverview="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer open="true" name="DEM" showFeatureCount="0" drawingOrder="-1" checked="Qt::Checked">
-      <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" visible="1" layerid="DEM_bd184679_1f2d_4bd6_9746_bec7040bf6b3"/>
+    <legendlayer checked="Qt::Checked" name="DEM" showFeatureCount="0" drawingOrder="-1" open="true">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile layerid="DEM_bd184679_1f2d_4bd6_9746_bec7040bf6b3" visible="1" isInOverview="0"/>
       </filegroup>
     </legendlayer>
   </legend>
   <mapViewDocks/>
   <mapViewDocks3D/>
   <projectlayers>
-    <maplayer geometry="Line" minScale="1e+8" labelsEnabled="0" hasScaleBasedVisibilityFlag="0" simplifyDrawingHints="1" refreshOnNotifyEnabled="0" autoRefreshTime="0" simplifyAlgorithm="0" readOnly="0" autoRefreshEnabled="0" refreshOnNotifyMessage="" simplifyMaxScale="1" maxScale="0" simplifyDrawingTol="1" type="vector" simplifyLocal="1">
+    <maplayer autoRefreshTime="0" type="vector" simplifyDrawingTol="1" readOnly="0" minScale="1e+8" refreshOnNotifyEnabled="0" maxScale="0" autoRefreshEnabled="0" refreshOnNotifyMessage="" simplifyMaxScale="1" simplifyDrawingHints="1" geometry="Line" simplifyAlgorithm="0" labelsEnabled="0" hasScaleBasedVisibilityFlag="0" simplifyLocal="1">
       <extent>
         <xmin>8.10819444444444315</xmin>
         <ymin>61.50819444444444883</ymin>
@@ -180,30 +180,30 @@
         <map-layer-style name="default"/>
       </map-layer-style-manager>
       <auxiliaryLayer/>
-      <renderer-v2 forceraster="0" enableorderby="0" symbollevels="0" type="singleSymbol">
+      <renderer-v2 type="singleSymbol" enableorderby="0" forceraster="0" symbollevels="0">
         <symbols>
-          <symbol name="0" clip_to_extent="1" type="line" alpha="1">
-            <layer pass="0" enabled="1" class="SimpleLine" locked="0">
-              <prop k="capstyle" v="square"/>
-              <prop k="customdash" v="5;2"/>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="customdash_unit" v="MM"/>
-              <prop k="draw_inside_polygon" v="0"/>
-              <prop k="joinstyle" v="bevel"/>
-              <prop k="line_color" v="134,4,15,255"/>
-              <prop k="line_style" v="solid"/>
-              <prop k="line_width" v="0.26"/>
-              <prop k="line_width_unit" v="MM"/>
-              <prop k="offset" v="0"/>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="use_custom_dash" v="0"/>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <symbol type="line" name="0" alpha="1" clip_to_extent="1">
+            <layer locked="0" pass="0" class="SimpleLine" enabled="1">
+              <prop v="square" k="capstyle"/>
+              <prop v="5;2" k="customdash"/>
+              <prop v="3x:0,0,0,0,0,0" k="customdash_map_unit_scale"/>
+              <prop v="MM" k="customdash_unit"/>
+              <prop v="0" k="draw_inside_polygon"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="134,4,15,255" k="line_color"/>
+              <prop v="solid" k="line_style"/>
+              <prop v="0.26" k="line_width"/>
+              <prop v="MM" k="line_width_unit"/>
+              <prop v="0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="0" k="use_custom_dash"/>
+              <prop v="3x:0,0,0,0,0,0" k="width_map_unit_scale"/>
               <data_defined_properties>
                 <Option type="Map">
-                  <Option name="name" type="QString" value=""/>
+                  <Option value="" type="QString" name="name"/>
                   <Option name="properties"/>
-                  <Option name="type" type="QString" value="collection"/>
+                  <Option value="collection" type="QString" name="type"/>
                 </Option>
               </data_defined_properties>
             </layer>
@@ -233,30 +233,30 @@
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias field="ID" name="" index="0"/>
-        <alias field="ELEV" name="" index="1"/>
+        <alias name="" index="0" field="ID"/>
+        <alias name="" index="1" field="ELEV"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default field="ID" expression="" applyOnUpdate="0"/>
-        <default field="ELEV" expression="" applyOnUpdate="0"/>
+        <default expression="" field="ID" applyOnUpdate="0"/>
+        <default expression="" field="ELEV" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint field="ID" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="ELEV" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="ID" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="ELEV" constraints="0" notnull_strength="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint exp="" desc="" field="ID"/>
-        <constraint exp="" desc="" field="ELEV"/>
+        <constraint desc="" field="ID" exp=""/>
+        <constraint desc="" field="ELEV" exp=""/>
       </constraintExpressions>
       <attributeactions>
-        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
-      <attributetableconfig sortOrder="0" sortExpression="" actionWidgetStyle="dropDown">
+      <attributetableconfig actionWidgetStyle="dropDown" sortOrder="0" sortExpression="">
         <columns/>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath></editforminitfilepath>
@@ -274,7 +274,7 @@
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer minScale="1e+8" hasScaleBasedVisibilityFlag="0" refreshOnNotifyEnabled="0" autoRefreshTime="0" autoRefreshEnabled="0" refreshOnNotifyMessage="" maxScale="0" type="raster">
+    <maplayer autoRefreshTime="0" type="raster" minScale="1e+8" refreshOnNotifyEnabled="0" maxScale="0" autoRefreshEnabled="0" refreshOnNotifyMessage="" hasScaleBasedVisibilityFlag="0">
       <extent>
         <xmin>8.10819444400000044</xmin>
         <ymin>61.50819444399999725</ymin>
@@ -324,7 +324,7 @@
         <links/>
       </resourceMetadata>
       <customproperties>
-        <property key="identify/format" value="Value"/>
+        <property value="Value" key="identify/format"/>
       </customproperties>
       <provider>gdal</provider>
       <noData>
@@ -334,7 +334,7 @@
         <map-layer-style name="default"/>
       </map-layer-style-manager>
       <pipe>
-        <rasterrenderer opacity="1" gradient="BlackToWhite" alphaBand="-1" grayBand="1" type="singlebandgray">
+        <rasterrenderer type="singlebandgray" alphaBand="-1" gradient="BlackToWhite" grayBand="1" opacity="1">
           <rasterTransparency/>
           <minMaxOrigin>
             <limits>MinMax</limits>
@@ -351,12 +351,12 @@
           </contrastEnhancement>
         </rasterrenderer>
         <brightnesscontrast contrast="0" brightness="0"/>
-        <huesaturation saturation="0" colorizeOn="0" colorizeGreen="128" colorizeBlue="128" grayscaleMode="0" colorizeStrength="100" colorizeRed="255"/>
+        <huesaturation saturation="0" colorizeGreen="128" colorizeBlue="128" colorizeStrength="100" grayscaleMode="0" colorizeOn="0" colorizeRed="255"/>
         <rasterresampler maxOversampling="2"/>
       </pipe>
       <blendMode>0</blendMode>
     </maplayer>
-    <maplayer geometry="Line" minScale="1e+8" labelsEnabled="0" hasScaleBasedVisibilityFlag="0" simplifyDrawingHints="1" refreshOnNotifyEnabled="0" autoRefreshTime="0" simplifyAlgorithm="0" readOnly="0" autoRefreshEnabled="0" refreshOnNotifyMessage="" simplifyMaxScale="1" maxScale="0" simplifyDrawingTol="1" type="vector" simplifyLocal="1">
+    <maplayer autoRefreshTime="0" type="vector" simplifyDrawingTol="1" readOnly="0" minScale="1e+8" refreshOnNotifyEnabled="0" maxScale="0" autoRefreshEnabled="0" refreshOnNotifyMessage="" simplifyMaxScale="1" simplifyDrawingHints="1" geometry="Line" simplifyAlgorithm="0" labelsEnabled="0" hasScaleBasedVisibilityFlag="0" simplifyLocal="1">
       <extent>
         <xmin>8.30764459999999971</xmin>
         <ymin>61.60918329999999798</ymin>
@@ -414,30 +414,30 @@
         <map-layer-style name="default"/>
       </map-layer-style-manager>
       <auxiliaryLayer/>
-      <renderer-v2 forceraster="0" enableorderby="0" symbollevels="0" type="singleSymbol">
+      <renderer-v2 type="singleSymbol" enableorderby="0" forceraster="0" symbollevels="0">
         <symbols>
-          <symbol name="0" clip_to_extent="1" type="line" alpha="1">
-            <layer pass="0" enabled="1" class="SimpleLine" locked="0">
-              <prop k="capstyle" v="square"/>
-              <prop k="customdash" v="5;2"/>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="customdash_unit" v="MM"/>
-              <prop k="draw_inside_polygon" v="0"/>
-              <prop k="joinstyle" v="bevel"/>
-              <prop k="line_color" v="107,205,41,255"/>
-              <prop k="line_style" v="solid"/>
-              <prop k="line_width" v="0.26"/>
-              <prop k="line_width_unit" v="MM"/>
-              <prop k="offset" v="0"/>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="use_custom_dash" v="0"/>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <symbol type="line" name="0" alpha="1" clip_to_extent="1">
+            <layer locked="0" pass="0" class="SimpleLine" enabled="1">
+              <prop v="square" k="capstyle"/>
+              <prop v="5;2" k="customdash"/>
+              <prop v="3x:0,0,0,0,0,0" k="customdash_map_unit_scale"/>
+              <prop v="MM" k="customdash_unit"/>
+              <prop v="0" k="draw_inside_polygon"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="107,205,41,255" k="line_color"/>
+              <prop v="solid" k="line_style"/>
+              <prop v="0.26" k="line_width"/>
+              <prop v="MM" k="line_width_unit"/>
+              <prop v="0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="0" k="use_custom_dash"/>
+              <prop v="3x:0,0,0,0,0,0" k="width_map_unit_scale"/>
               <data_defined_properties>
                 <Option type="Map">
-                  <Option name="name" type="QString" value=""/>
+                  <Option value="" type="QString" name="name"/>
                   <Option name="properties"/>
-                  <Option name="type" type="QString" value="collection"/>
+                  <Option value="collection" type="QString" name="type"/>
                 </Option>
               </data_defined_properties>
             </layer>
@@ -502,50 +502,50 @@
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias field="osm_id" name="" index="0"/>
-        <alias field="name" name="" index="1"/>
-        <alias field="ref" name="" index="2"/>
-        <alias field="type" name="" index="3"/>
-        <alias field="oneway" name="" index="4"/>
-        <alias field="bridge" name="" index="5"/>
-        <alias field="maxspeed" name="" index="6"/>
+        <alias name="" index="0" field="osm_id"/>
+        <alias name="" index="1" field="name"/>
+        <alias name="" index="2" field="ref"/>
+        <alias name="" index="3" field="type"/>
+        <alias name="" index="4" field="oneway"/>
+        <alias name="" index="5" field="bridge"/>
+        <alias name="" index="6" field="maxspeed"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default field="osm_id" expression="" applyOnUpdate="0"/>
-        <default field="name" expression="" applyOnUpdate="0"/>
-        <default field="ref" expression="" applyOnUpdate="0"/>
-        <default field="type" expression="" applyOnUpdate="0"/>
-        <default field="oneway" expression="" applyOnUpdate="0"/>
-        <default field="bridge" expression="" applyOnUpdate="0"/>
-        <default field="maxspeed" expression="" applyOnUpdate="0"/>
+        <default expression="" field="osm_id" applyOnUpdate="0"/>
+        <default expression="" field="name" applyOnUpdate="0"/>
+        <default expression="" field="ref" applyOnUpdate="0"/>
+        <default expression="" field="type" applyOnUpdate="0"/>
+        <default expression="" field="oneway" applyOnUpdate="0"/>
+        <default expression="" field="bridge" applyOnUpdate="0"/>
+        <default expression="" field="maxspeed" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint field="osm_id" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="name" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="ref" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="type" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="oneway" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="bridge" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="maxspeed" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="osm_id" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="name" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="ref" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="type" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="oneway" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="bridge" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="maxspeed" constraints="0" notnull_strength="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint exp="" desc="" field="osm_id"/>
-        <constraint exp="" desc="" field="name"/>
-        <constraint exp="" desc="" field="ref"/>
-        <constraint exp="" desc="" field="type"/>
-        <constraint exp="" desc="" field="oneway"/>
-        <constraint exp="" desc="" field="bridge"/>
-        <constraint exp="" desc="" field="maxspeed"/>
+        <constraint desc="" field="osm_id" exp=""/>
+        <constraint desc="" field="name" exp=""/>
+        <constraint desc="" field="ref" exp=""/>
+        <constraint desc="" field="type" exp=""/>
+        <constraint desc="" field="oneway" exp=""/>
+        <constraint desc="" field="bridge" exp=""/>
+        <constraint desc="" field="maxspeed" exp=""/>
       </constraintExpressions>
       <attributeactions>
-        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
-      <attributetableconfig sortOrder="0" sortExpression="" actionWidgetStyle="dropDown">
+      <attributetableconfig actionWidgetStyle="dropDown" sortOrder="0" sortExpression="">
         <columns/>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath></editforminitfilepath>
@@ -563,7 +563,7 @@
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer geometry="Line" minScale="1e+8" labelsEnabled="0" hasScaleBasedVisibilityFlag="0" simplifyDrawingHints="1" refreshOnNotifyEnabled="0" autoRefreshTime="0" simplifyAlgorithm="0" readOnly="0" autoRefreshEnabled="0" refreshOnNotifyMessage="" simplifyMaxScale="1" maxScale="0" simplifyDrawingTol="1" type="vector" simplifyLocal="1">
+    <maplayer autoRefreshTime="0" type="vector" simplifyDrawingTol="1" readOnly="0" minScale="1e+8" refreshOnNotifyEnabled="0" maxScale="0" autoRefreshEnabled="0" refreshOnNotifyMessage="" simplifyMaxScale="1" simplifyDrawingHints="1" geometry="Line" simplifyAlgorithm="0" labelsEnabled="0" hasScaleBasedVisibilityFlag="0" simplifyLocal="1">
       <extent>
         <xmin>8.31244260000000068</xmin>
         <ymin>61.62462759999999662</ymin>
@@ -621,30 +621,30 @@
         <map-layer-style name="default"/>
       </map-layer-style-manager>
       <auxiliaryLayer/>
-      <renderer-v2 forceraster="0" enableorderby="0" symbollevels="0" type="singleSymbol">
+      <renderer-v2 type="singleSymbol" enableorderby="0" forceraster="0" symbollevels="0">
         <symbols>
-          <symbol name="0" clip_to_extent="1" type="line" alpha="1">
-            <layer pass="0" enabled="1" class="SimpleLine" locked="0">
-              <prop k="capstyle" v="square"/>
-              <prop k="customdash" v="5;2"/>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="customdash_unit" v="MM"/>
-              <prop k="draw_inside_polygon" v="0"/>
-              <prop k="joinstyle" v="bevel"/>
-              <prop k="line_color" v="192,11,83,255"/>
-              <prop k="line_style" v="solid"/>
-              <prop k="line_width" v="0.26"/>
-              <prop k="line_width_unit" v="MM"/>
-              <prop k="offset" v="0"/>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="use_custom_dash" v="0"/>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <symbol type="line" name="0" alpha="1" clip_to_extent="1">
+            <layer locked="0" pass="0" class="SimpleLine" enabled="1">
+              <prop v="square" k="capstyle"/>
+              <prop v="5;2" k="customdash"/>
+              <prop v="3x:0,0,0,0,0,0" k="customdash_map_unit_scale"/>
+              <prop v="MM" k="customdash_unit"/>
+              <prop v="0" k="draw_inside_polygon"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="192,11,83,255" k="line_color"/>
+              <prop v="solid" k="line_style"/>
+              <prop v="0.26" k="line_width"/>
+              <prop v="MM" k="line_width_unit"/>
+              <prop v="0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="0" k="use_custom_dash"/>
+              <prop v="3x:0,0,0,0,0,0" k="width_map_unit_scale"/>
               <data_defined_properties>
                 <Option type="Map">
-                  <Option name="name" type="QString" value=""/>
+                  <Option value="" type="QString" name="name"/>
                   <Option name="properties"/>
-                  <Option name="type" type="QString" value="collection"/>
+                  <Option value="collection" type="QString" name="type"/>
                 </Option>
               </data_defined_properties>
             </layer>
@@ -709,50 +709,50 @@
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias field="osm_id" name="" index="0"/>
-        <alias field="name" name="" index="1"/>
-        <alias field="ref" name="" index="2"/>
-        <alias field="type" name="" index="3"/>
-        <alias field="oneway" name="" index="4"/>
-        <alias field="bridge" name="" index="5"/>
-        <alias field="maxspeed" name="" index="6"/>
+        <alias name="" index="0" field="osm_id"/>
+        <alias name="" index="1" field="name"/>
+        <alias name="" index="2" field="ref"/>
+        <alias name="" index="3" field="type"/>
+        <alias name="" index="4" field="oneway"/>
+        <alias name="" index="5" field="bridge"/>
+        <alias name="" index="6" field="maxspeed"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default field="osm_id" expression="" applyOnUpdate="0"/>
-        <default field="name" expression="" applyOnUpdate="0"/>
-        <default field="ref" expression="" applyOnUpdate="0"/>
-        <default field="type" expression="" applyOnUpdate="0"/>
-        <default field="oneway" expression="" applyOnUpdate="0"/>
-        <default field="bridge" expression="" applyOnUpdate="0"/>
-        <default field="maxspeed" expression="" applyOnUpdate="0"/>
+        <default expression="" field="osm_id" applyOnUpdate="0"/>
+        <default expression="" field="name" applyOnUpdate="0"/>
+        <default expression="" field="ref" applyOnUpdate="0"/>
+        <default expression="" field="type" applyOnUpdate="0"/>
+        <default expression="" field="oneway" applyOnUpdate="0"/>
+        <default expression="" field="bridge" applyOnUpdate="0"/>
+        <default expression="" field="maxspeed" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint field="osm_id" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="name" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="ref" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="type" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="oneway" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="bridge" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="maxspeed" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="osm_id" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="name" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="ref" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="type" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="oneway" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="bridge" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="maxspeed" constraints="0" notnull_strength="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint exp="" desc="" field="osm_id"/>
-        <constraint exp="" desc="" field="name"/>
-        <constraint exp="" desc="" field="ref"/>
-        <constraint exp="" desc="" field="type"/>
-        <constraint exp="" desc="" field="oneway"/>
-        <constraint exp="" desc="" field="bridge"/>
-        <constraint exp="" desc="" field="maxspeed"/>
+        <constraint desc="" field="osm_id" exp=""/>
+        <constraint desc="" field="name" exp=""/>
+        <constraint desc="" field="ref" exp=""/>
+        <constraint desc="" field="type" exp=""/>
+        <constraint desc="" field="oneway" exp=""/>
+        <constraint desc="" field="bridge" exp=""/>
+        <constraint desc="" field="maxspeed" exp=""/>
       </constraintExpressions>
       <attributeactions>
-        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
-      <attributetableconfig sortOrder="0" sortExpression="" actionWidgetStyle="dropDown">
+      <attributetableconfig actionWidgetStyle="dropDown" sortOrder="0" sortExpression="">
         <columns/>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath></editforminitfilepath>
@@ -770,8 +770,8 @@
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer geometry="No geometry" minScale="1e+8" hasScaleBasedVisibilityFlag="0" refreshOnNotifyEnabled="0" autoRefreshTime="0" readOnly="0" autoRefreshEnabled="0" refreshOnNotifyMessage="" maxScale="0" type="vector">
-      <id>route_coordinates_06e9c7ad_0d9f_4629_a761_4a4cba723c82</id>
+    <maplayer autoRefreshTime="0" type="vector" readOnly="0" minScale="1e+8" refreshOnNotifyEnabled="0" maxScale="0" autoRefreshEnabled="0" refreshOnNotifyMessage="" geometry="No geometry" hasScaleBasedVisibilityFlag="0">
+      <id>route_coordinates_3f344d2d_7ef3_4aa8_898b_9952feaba48b</id>
       <datasource>./data/route_coordinates.csv</datasource>
       <keywordList>
         <value></value>
@@ -854,35 +854,35 @@
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias field="X" name="" index="0"/>
-        <alias field="Y" name="" index="1"/>
-        <alias field="DEM" name="" index="2"/>
-        <alias field="field_4" name="" index="3"/>
+        <alias name="" index="0" field="X"/>
+        <alias name="" index="1" field="Y"/>
+        <alias name="" index="2" field="DEM"/>
+        <alias name="" index="3" field="field_4"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default field="X" expression="" applyOnUpdate="0"/>
-        <default field="Y" expression="" applyOnUpdate="0"/>
-        <default field="DEM" expression="" applyOnUpdate="0"/>
-        <default field="field_4" expression="" applyOnUpdate="0"/>
+        <default expression="" field="X" applyOnUpdate="0"/>
+        <default expression="" field="Y" applyOnUpdate="0"/>
+        <default expression="" field="DEM" applyOnUpdate="0"/>
+        <default expression="" field="field_4" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint field="X" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="Y" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="DEM" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="field_4" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="X" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="Y" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="DEM" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="field_4" constraints="0" notnull_strength="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint exp="" desc="" field="X"/>
-        <constraint exp="" desc="" field="Y"/>
-        <constraint exp="" desc="" field="DEM"/>
-        <constraint exp="" desc="" field="field_4"/>
+        <constraint desc="" field="X" exp=""/>
+        <constraint desc="" field="Y" exp=""/>
+        <constraint desc="" field="DEM" exp=""/>
+        <constraint desc="" field="field_4" exp=""/>
       </constraintExpressions>
       <attributeactions>
-        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
-      <attributetableconfig sortOrder="0" sortExpression="" actionWidgetStyle="dropDown">
+      <attributetableconfig actionWidgetStyle="dropDown" sortOrder="0" sortExpression="">
         <columns/>
       </attributetableconfig>
       <editform></editform>
@@ -903,7 +903,7 @@
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer geometry="Point" minScale="1e+8" labelsEnabled="0" hasScaleBasedVisibilityFlag="0" simplifyDrawingHints="1" refreshOnNotifyEnabled="0" autoRefreshTime="0" simplifyAlgorithm="0" readOnly="0" autoRefreshEnabled="0" refreshOnNotifyMessage="" simplifyMaxScale="1" maxScale="0" simplifyDrawingTol="1" type="vector" simplifyLocal="1">
+    <maplayer autoRefreshTime="0" type="vector" simplifyDrawingTol="1" readOnly="0" minScale="1e+8" refreshOnNotifyEnabled="0" maxScale="0" autoRefreshEnabled="0" refreshOnNotifyMessage="" simplifyMaxScale="1" simplifyDrawingHints="1" geometry="Point" simplifyAlgorithm="0" labelsEnabled="0" hasScaleBasedVisibilityFlag="0" simplifyLocal="1">
       <extent>
         <xmin>8.31244260000000068</xmin>
         <ymin>61.62462759999999662</ymin>
@@ -961,33 +961,33 @@
         <map-layer-style name="default"/>
       </map-layer-style-manager>
       <auxiliaryLayer/>
-      <renderer-v2 forceraster="0" enableorderby="0" symbollevels="0" type="singleSymbol">
+      <renderer-v2 type="singleSymbol" enableorderby="0" forceraster="0" symbollevels="0">
         <symbols>
-          <symbol name="0" clip_to_extent="1" type="marker" alpha="1">
-            <layer pass="0" enabled="1" class="SimpleMarker" locked="0">
-              <prop k="angle" v="0"/>
-              <prop k="color" v="134,20,58,255"/>
-              <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="joinstyle" v="bevel"/>
-              <prop k="name" v="circle"/>
-              <prop k="offset" v="0,0"/>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="35,35,35,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0"/>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="diameter"/>
-              <prop k="size" v="2"/>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="size_unit" v="MM"/>
-              <prop k="vertical_anchor_point" v="1"/>
+          <symbol type="marker" name="0" alpha="1" clip_to_extent="1">
+            <layer locked="0" pass="0" class="SimpleMarker" enabled="1">
+              <prop v="0" k="angle"/>
+              <prop v="134,20,58,255" k="color"/>
+              <prop v="1" k="horizontal_anchor_point"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="circle" k="name"/>
+              <prop v="0,0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="35,35,35,255" k="outline_color"/>
+              <prop v="solid" k="outline_style"/>
+              <prop v="0" k="outline_width"/>
+              <prop v="3x:0,0,0,0,0,0" k="outline_width_map_unit_scale"/>
+              <prop v="MM" k="outline_width_unit"/>
+              <prop v="diameter" k="scale_method"/>
+              <prop v="2" k="size"/>
+              <prop v="3x:0,0,0,0,0,0" k="size_map_unit_scale"/>
+              <prop v="MM" k="size_unit"/>
+              <prop v="1" k="vertical_anchor_point"/>
               <data_defined_properties>
                 <Option type="Map">
-                  <Option name="name" type="QString" value=""/>
+                  <Option value="" type="QString" name="name"/>
                   <Option name="properties"/>
-                  <Option name="type" type="QString" value="collection"/>
+                  <Option value="collection" type="QString" name="type"/>
                 </Option>
               </data_defined_properties>
             </layer>
@@ -997,9 +997,7 @@
         <sizescale/>
       </renderer-v2>
       <customproperties>
-        <property key="dualview/previewExpressions">
-          <value>"osm_id"</value>
-        </property>
+        <property value="&quot;osm_id&quot;" key="dualview/previewExpressions"/>
       </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
@@ -1091,84 +1089,84 @@
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias field="osm_id" name="" index="0"/>
-        <alias field="name" name="" index="1"/>
-        <alias field="ref" name="" index="2"/>
-        <alias field="type" name="" index="3"/>
-        <alias field="oneway" name="" index="4"/>
-        <alias field="bridge" name="" index="5"/>
-        <alias field="maxspeed" name="" index="6"/>
-        <alias field="vertex_ind" name="" index="7"/>
-        <alias field="vertex_par" name="" index="8"/>
-        <alias field="vertex_p_1" name="" index="9"/>
-        <alias field="distance" name="" index="10"/>
-        <alias field="angle" name="" index="11"/>
+        <alias name="" index="0" field="osm_id"/>
+        <alias name="" index="1" field="name"/>
+        <alias name="" index="2" field="ref"/>
+        <alias name="" index="3" field="type"/>
+        <alias name="" index="4" field="oneway"/>
+        <alias name="" index="5" field="bridge"/>
+        <alias name="" index="6" field="maxspeed"/>
+        <alias name="" index="7" field="vertex_ind"/>
+        <alias name="" index="8" field="vertex_par"/>
+        <alias name="" index="9" field="vertex_p_1"/>
+        <alias name="" index="10" field="distance"/>
+        <alias name="" index="11" field="angle"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default field="osm_id" expression="" applyOnUpdate="0"/>
-        <default field="name" expression="" applyOnUpdate="0"/>
-        <default field="ref" expression="" applyOnUpdate="0"/>
-        <default field="type" expression="" applyOnUpdate="0"/>
-        <default field="oneway" expression="" applyOnUpdate="0"/>
-        <default field="bridge" expression="" applyOnUpdate="0"/>
-        <default field="maxspeed" expression="" applyOnUpdate="0"/>
-        <default field="vertex_ind" expression="" applyOnUpdate="0"/>
-        <default field="vertex_par" expression="" applyOnUpdate="0"/>
-        <default field="vertex_p_1" expression="" applyOnUpdate="0"/>
-        <default field="distance" expression="" applyOnUpdate="0"/>
-        <default field="angle" expression="" applyOnUpdate="0"/>
+        <default expression="" field="osm_id" applyOnUpdate="0"/>
+        <default expression="" field="name" applyOnUpdate="0"/>
+        <default expression="" field="ref" applyOnUpdate="0"/>
+        <default expression="" field="type" applyOnUpdate="0"/>
+        <default expression="" field="oneway" applyOnUpdate="0"/>
+        <default expression="" field="bridge" applyOnUpdate="0"/>
+        <default expression="" field="maxspeed" applyOnUpdate="0"/>
+        <default expression="" field="vertex_ind" applyOnUpdate="0"/>
+        <default expression="" field="vertex_par" applyOnUpdate="0"/>
+        <default expression="" field="vertex_p_1" applyOnUpdate="0"/>
+        <default expression="" field="distance" applyOnUpdate="0"/>
+        <default expression="" field="angle" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint field="osm_id" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="name" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="ref" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="type" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="oneway" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="bridge" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="maxspeed" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="vertex_ind" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="vertex_par" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="vertex_p_1" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="distance" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
-        <constraint field="angle" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="osm_id" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="name" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="ref" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="type" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="oneway" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="bridge" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="maxspeed" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="vertex_ind" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="vertex_par" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="vertex_p_1" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="distance" constraints="0" notnull_strength="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="angle" constraints="0" notnull_strength="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint exp="" desc="" field="osm_id"/>
-        <constraint exp="" desc="" field="name"/>
-        <constraint exp="" desc="" field="ref"/>
-        <constraint exp="" desc="" field="type"/>
-        <constraint exp="" desc="" field="oneway"/>
-        <constraint exp="" desc="" field="bridge"/>
-        <constraint exp="" desc="" field="maxspeed"/>
-        <constraint exp="" desc="" field="vertex_ind"/>
-        <constraint exp="" desc="" field="vertex_par"/>
-        <constraint exp="" desc="" field="vertex_p_1"/>
-        <constraint exp="" desc="" field="distance"/>
-        <constraint exp="" desc="" field="angle"/>
+        <constraint desc="" field="osm_id" exp=""/>
+        <constraint desc="" field="name" exp=""/>
+        <constraint desc="" field="ref" exp=""/>
+        <constraint desc="" field="type" exp=""/>
+        <constraint desc="" field="oneway" exp=""/>
+        <constraint desc="" field="bridge" exp=""/>
+        <constraint desc="" field="maxspeed" exp=""/>
+        <constraint desc="" field="vertex_ind" exp=""/>
+        <constraint desc="" field="vertex_par" exp=""/>
+        <constraint desc="" field="vertex_p_1" exp=""/>
+        <constraint desc="" field="distance" exp=""/>
+        <constraint desc="" field="angle" exp=""/>
       </constraintExpressions>
       <attributeactions>
-        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
-      <attributetableconfig sortOrder="0" sortExpression="" actionWidgetStyle="dropDown">
+      <attributetableconfig actionWidgetStyle="dropDown" sortOrder="0" sortExpression="">
         <columns>
-          <column name="osm_id" hidden="0" width="-1" type="field"/>
-          <column name="name" hidden="0" width="-1" type="field"/>
-          <column name="ref" hidden="0" width="-1" type="field"/>
-          <column name="type" hidden="0" width="-1" type="field"/>
-          <column name="oneway" hidden="0" width="-1" type="field"/>
-          <column name="bridge" hidden="0" width="-1" type="field"/>
-          <column name="maxspeed" hidden="0" width="-1" type="field"/>
-          <column name="vertex_ind" hidden="0" width="-1" type="field"/>
-          <column name="vertex_par" hidden="0" width="-1" type="field"/>
-          <column name="vertex_p_1" hidden="0" width="-1" type="field"/>
-          <column name="distance" hidden="0" width="-1" type="field"/>
-          <column name="angle" hidden="0" width="-1" type="field"/>
-          <column hidden="1" width="-1" type="actions"/>
+          <column type="field" name="osm_id" width="-1" hidden="0"/>
+          <column type="field" name="name" width="-1" hidden="0"/>
+          <column type="field" name="ref" width="-1" hidden="0"/>
+          <column type="field" name="type" width="-1" hidden="0"/>
+          <column type="field" name="oneway" width="-1" hidden="0"/>
+          <column type="field" name="bridge" width="-1" hidden="0"/>
+          <column type="field" name="maxspeed" width="-1" hidden="0"/>
+          <column type="field" name="vertex_ind" width="-1" hidden="0"/>
+          <column type="field" name="vertex_par" width="-1" hidden="0"/>
+          <column type="field" name="vertex_p_1" width="-1" hidden="0"/>
+          <column type="field" name="distance" width="-1" hidden="0"/>
+          <column type="field" name="angle" width="-1" hidden="0"/>
+          <column type="actions" width="-1" hidden="1"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath></editforminitfilepath>
@@ -1186,7 +1184,7 @@
       <previewExpression>"osm_id"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer geometry="Point" minScale="1e+8" labelsEnabled="0" hasScaleBasedVisibilityFlag="0" simplifyDrawingHints="1" refreshOnNotifyEnabled="0" autoRefreshTime="0" simplifyAlgorithm="0" readOnly="0" autoRefreshEnabled="0" refreshOnNotifyMessage="" simplifyMaxScale="1" maxScale="0" simplifyDrawingTol="1" type="vector" simplifyLocal="1">
+    <maplayer autoRefreshTime="0" type="vector" simplifyDrawingTol="1" readOnly="0" minScale="1e+8" refreshOnNotifyEnabled="0" maxScale="0" autoRefreshEnabled="0" refreshOnNotifyMessage="" simplifyMaxScale="1" simplifyDrawingHints="1" geometry="Point" simplifyAlgorithm="0" labelsEnabled="0" hasScaleBasedVisibilityFlag="0" simplifyLocal="1">
       <extent>
         <xmin>8.31244260000000068</xmin>
         <ymin>61.62462759999999662</ymin>
@@ -1244,33 +1242,33 @@
         <map-layer-style name="default"/>
       </map-layer-style-manager>
       <auxiliaryLayer/>
-      <renderer-v2 forceraster="0" enableorderby="0" symbollevels="0" type="singleSymbol">
+      <renderer-v2 type="singleSymbol" enableorderby="0" forceraster="0" symbollevels="0">
         <symbols>
-          <symbol name="0" clip_to_extent="1" type="marker" alpha="1">
-            <layer pass="0" enabled="1" class="SimpleMarker" locked="0">
-              <prop k="angle" v="0"/>
-              <prop k="color" v="192,216,120,255"/>
-              <prop k="horizontal_anchor_point" v="1"/>
-              <prop k="joinstyle" v="bevel"/>
-              <prop k="name" v="circle"/>
-              <prop k="offset" v="0,0"/>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="35,35,35,255"/>
-              <prop k="outline_style" v="solid"/>
-              <prop k="outline_width" v="0"/>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="outline_width_unit" v="MM"/>
-              <prop k="scale_method" v="diameter"/>
-              <prop k="size" v="2"/>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"/>
-              <prop k="size_unit" v="MM"/>
-              <prop k="vertical_anchor_point" v="1"/>
+          <symbol type="marker" name="0" alpha="1" clip_to_extent="1">
+            <layer locked="0" pass="0" class="SimpleMarker" enabled="1">
+              <prop v="0" k="angle"/>
+              <prop v="192,216,120,255" k="color"/>
+              <prop v="1" k="horizontal_anchor_point"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="circle" k="name"/>
+              <prop v="0,0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="35,35,35,255" k="outline_color"/>
+              <prop v="solid" k="outline_style"/>
+              <prop v="0" k="outline_width"/>
+              <prop v="3x:0,0,0,0,0,0" k="outline_width_map_unit_scale"/>
+              <prop v="MM" k="outline_width_unit"/>
+              <prop v="diameter" k="scale_method"/>
+              <prop v="2" k="size"/>
+              <prop v="3x:0,0,0,0,0,0" k="size_map_unit_scale"/>
+              <prop v="MM" k="size_unit"/>
+              <prop v="1" k="vertical_anchor_point"/>
               <data_defined_properties>
                 <Option type="Map">
-                  <Option name="name" type="QString" value=""/>
+                  <Option value="" type="QString" name="name"/>
                   <Option name="properties"/>
-                  <Option name="type" type="QString" value="collection"/>
+                  <Option value="collection" type="QString" name="type"/>
                 </Option>
               </data_defined_properties>
             </layer>
@@ -1297,29 +1295,30 @@
         </field>
       </fieldConfiguration>
       <aliases>
-        <alias field="DEM" name="" index="0"/>
+        <alias name="" index="0" field="DEM"/>
       </aliases>
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <defaults>
-        <default field="DEM" expression="" applyOnUpdate="0"/>
+        <default expression="" field="DEM" applyOnUpdate="0"/>
       </defaults>
       <constraints>
-        <constraint field="DEM" notnull_strength="0" unique_strength="0" exp_strength="0" constraints="0"/>
+        <constraint exp_strength="0" unique_strength="0" field="DEM" constraints="0" notnull_strength="0"/>
       </constraints>
       <constraintExpressions>
-        <constraint exp="" desc="" field="DEM"/>
+        <constraint desc="" field="DEM" exp=""/>
       </constraintExpressions>
       <attributeactions>
-        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
       </attributeactions>
-      <attributetableconfig sortOrder="0" sortExpression="" actionWidgetStyle="dropDown">
+      <attributetableconfig actionWidgetStyle="dropDown" sortOrder="0" sortExpression="&quot;x&quot;">
         <columns>
-          <column name="DEM" hidden="0" width="-1" type="field"/>
-          <column hidden="1" width="-1" type="actions"/>
+          <column type="field" name="DEM" width="-1" hidden="0"/>
+          <column type="actions" width="-1" hidden="1"/>
+          <column type="field" name="x" width="-1" hidden="0"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
       <editforminitfilepath></editforminitfilepath>
@@ -1345,49 +1344,94 @@
     <layer id="route_3184b296_757f_469a_a0e8_909ea115cda1"/>
     <layer id="route_pts_8f8d5a03_627f_400a_ad73_e0cfb2845b76"/>
     <layer id="route_pts_elev_shp_377e791f_a41c_480d_b62f_d48ba199e78b"/>
-    <layer id="route_coordinates_06e9c7ad_0d9f_4629_a761_4a4cba723c82"/>
+    <layer id="route_coordinates_3f344d2d_7ef3_4aa8_898b_9952feaba48b"/>
   </layerorder>
   <properties>
-    <PositionPrecision>
-      <DecimalPlaces type="int">2</DecimalPlaces>
-      <Automatic type="bool">true</Automatic>
-    </PositionPrecision>
-    <Gui>
-      <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
-      <SelectionColorRedPart type="int">255</SelectionColorRedPart>
-      <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
-      <CanvasColorBluePart type="int">255</CanvasColorBluePart>
-      <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
-      <CanvasColorRedPart type="int">255</CanvasColorRedPart>
-      <SelectionColorBluePart type="int">0</SelectionColorBluePart>
-    </Gui>
-    <PAL>
-      <SearchMethod type="int">0</SearchMethod>
-      <ShowingPartialsLabels type="bool">true</ShowingPartialsLabels>
-      <DrawOutlineLabels type="bool">true</DrawOutlineLabels>
-      <CandidatesLine type="int">50</CandidatesLine>
-      <CandidatesPoint type="int">16</CandidatesPoint>
-      <ShowingCandidates type="bool">false</ShowingCandidates>
-      <CandidatesPolygon type="int">30</CandidatesPolygon>
-      <ShowingAllLabels type="bool">false</ShowingAllLabels>
-      <DrawRectOnly type="bool">false</DrawRectOnly>
-    </PAL>
-    <Paths>
-      <Absolute type="bool">false</Absolute>
-    </Paths>
-    <Measurement>
-      <DistanceUnits type="QString"></DistanceUnits>
-      <AreaUnits type="QString"></AreaUnits>
-    </Measurement>
     <SpatialRefSys>
       <ProjectionsEnabled type="int">1</ProjectionsEnabled>
     </SpatialRefSys>
+    <WMSRequestDefinedDataSources type="bool">false</WMSRequestDefinedDataSources>
     <Measure>
       <Ellipsoid type="QString">WGS84</Ellipsoid>
     </Measure>
+    <WFSUrl type="QString"></WFSUrl>
+    <DefaultStyles>
+      <Fill type="QString"></Fill>
+      <Opacity type="double">1</Opacity>
+      <Marker type="QString"></Marker>
+      <RandomColors type="bool">true</RandomColors>
+      <Line type="QString"></Line>
+      <ColorRamp type="QString"></ColorRamp>
+    </DefaultStyles>
+    <WMSServiceTitle type="QString"></WMSServiceTitle>
+    <WFSLayers type="QStringList"/>
+    <WFSTLayers>
+      <Update type="QStringList"/>
+      <Delete type="QStringList"/>
+      <Insert type="QStringList"/>
+    </WFSTLayers>
+    <Macros>
+      <pythonCode type="QString"></pythonCode>
+    </Macros>
+    <Measurement>
+      <DistanceUnits type="QString">&lt;unknown></DistanceUnits>
+      <AreaUnits type="QString">&lt;unknown></AreaUnits>
+    </Measurement>
+    <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
+    <PositionPrecision>
+      <Automatic type="bool">true</Automatic>
+      <DecimalPlaces type="int">2</DecimalPlaces>
+      <DegreeFormat type="QString">MU</DegreeFormat>
+    </PositionPrecision>
+    <WMSOnlineResource type="QString"></WMSOnlineResource>
+    <WMSKeywordList type="QStringList">
+      <value></value>
+    </WMSKeywordList>
+    <WMSContactOrganization type="QString"></WMSContactOrganization>
+    <WMSContactPhone type="QString"></WMSContactPhone>
+    <WMSSegmentizeFeatureInfoGeometry type="bool">false</WMSSegmentizeFeatureInfoGeometry>
+    <PAL>
+      <ShowingPartialsLabels type="bool">true</ShowingPartialsLabels>
+      <CandidatesLine type="int">50</CandidatesLine>
+      <SearchMethod type="int">0</SearchMethod>
+      <DrawRectOnly type="bool">false</DrawRectOnly>
+      <DrawOutlineLabels type="bool">true</DrawOutlineLabels>
+      <CandidatesPoint type="int">16</CandidatesPoint>
+      <CandidatesPolygon type="int">30</CandidatesPolygon>
+      <ShowingAllLabels type="bool">false</ShowingAllLabels>
+      <ShowingCandidates type="bool">false</ShowingCandidates>
+    </PAL>
+    <WCSLayers type="QStringList"/>
+    <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
+    <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
+    <WMSContactPosition type="QString"></WMSContactPosition>
+    <WMSContactPerson type="QString"></WMSContactPerson>
+    <Identify>
+      <disabledLayers type="QStringList"/>
+    </Identify>
+    <Paths>
+      <Absolute type="bool">false</Absolute>
+    </Paths>
+    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
+    <WMSFees type="QString">conditions unknown</WMSFees>
+    <WCSUrl type="QString"></WCSUrl>
+    <WMSContactMail type="QString"></WMSContactMail>
+    <WMSAccessConstraints type="QString">None</WMSAccessConstraints>
+    <WMSPrecision type="QString">8</WMSPrecision>
+    <Gui>
+      <SelectionColorRedPart type="int">255</SelectionColorRedPart>
+      <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
+      <CanvasColorRedPart type="int">255</CanvasColorRedPart>
+      <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
+      <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
+      <CanvasColorBluePart type="int">255</CanvasColorBluePart>
+      <SelectionColorBluePart type="int">0</SelectionColorBluePart>
+    </Gui>
     <Legend>
       <filterByMap type="bool">false</filterByMap>
     </Legend>
+    <WMSUrl type="QString"></WMSUrl>
+    <WMSImageQuality type="int">90</WMSImageQuality>
   </properties>
   <visibility-presets/>
   <transformContext/>
