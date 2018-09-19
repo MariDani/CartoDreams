@@ -4,7 +4,9 @@
   "description": "Different lengths of hiking trail in 2D and 3D.",
   "main": "index.js",
   "dependencies": {
+    "@types/papaparse": "^4.5.4",
     "@types/three": "^0.92.23",
+    "papaparse": "^4.6.0",
     "three": "^0.96.0",
     "typescript": "^2.6.2"
   },
