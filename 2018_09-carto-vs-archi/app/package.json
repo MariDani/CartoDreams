@@ -1,0 +1,22 @@
+{
+  "name": "2018_09-carto-vs-archi",
+  "version": "1.0.0",
+  "description": "Different lengths of hiking trail in 2D and 3D.",
+  "main": "index.js",
+  "dependencies": {
+    "@types/three": "^0.92.23",
+    "three": "^0.96.0",
+    "typescript": "^2.6.2"
+  },
+  "devDependencies": {
+    "ts-loader": "^3.4.0",
+    "webpack": "^3.10.0"
+  },
+  "scripts": {
+    "build": "webpack --progress --colors --display-error-details",
+    "watch": "webpack --progress --colors --display-error-details --display-modules --display-exclude --watch",
+    "server": "webpack-dev-server --content-base ./dist"
+  },
+  "author": "Mariana Danielova",
+  "license": "ISC"
+}
