@@ -19,32 +19,35 @@ function parseData(url: string, callBack: any) {
 function createVisualization(data: Array<ImportedData>) {
     // setup a scene
     var scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xffffff);
-    var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
-    camera.position.set(463700, 2800, 6834000);
-    camera.lookAt(463559, 2393, 6833876);
+    scene.background = new THREE.Color(0xb3e2e5);
+    var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.001, 50000);
+    camera.position.set(465600, 4000, 6833700);
+    camera.lookAt(465600, /* 2393 */0, 6833700);
 
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
     //create a blue LineBasicMaterial
-    var material = new THREE.LineBasicMaterial({ color: 0x0000ff });
+    var material = new THREE.LineBasicMaterial({ color: 0x55aa58 });
 
     var geometry = new THREE.Geometry();
 
     data.forEach(point => {
-        geometry.vertices.push(new THREE.Vector3(point.X, point.DEM, point.Y));
+        if (point.X != undefined && point.Y != undefined) {
+            geometry.vertices.push(new THREE.Vector3(point.X, /* point.DEM */0, point.Y));
+        }
     });
-
+    
     var line = new THREE.Line(geometry, material);
-
+    
     scene.add(line);
 
     // camera.position.z = 5;S
 
     var animate = function () {
         requestAnimationFrame(animate);
+
 
         // line.rotation.x += 0.01;
         // line.rotation.y += 0.01;
@@ -55,7 +58,7 @@ function createVisualization(data: Array<ImportedData>) {
     animate();
 }
 
-interface ImportedData{
+interface ImportedData {
     X: number,
     Y: number,
     DEM: number
