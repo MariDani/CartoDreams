@@ -1,67 +1,50 @@
-var origin = [480, 300], j = 200, scale = 2
-let scatter = []
+var origin = [450, 300], j = 200, scale = 1
 let yLine = []
-let xGrid = []
 let hikingRoute = [];
-let contours = [];
-let beta = 0, alpha = 0, key = function (d) { return d.id; }, startAngle = Math.PI / 4;
-var svg = d3.select('svg').call(d3.drag().on('drag', dragged).on('start', dragStart).on('end', dragEnd)).append('g');
+let beta = 0, alpha = 0, startAngle = Math.PI / 4;
+var svg = d3.select("svg")
+    .call(d3.drag()
+        .on("drag", dragged)
+        .on("start", dragStart)
+        .on("end", dragEnd))
+    .append("g");
 
 var mx, my, mouseX, mouseY;
 
 let flatview = true;
 
 // load csv data
-let data = loadData("data/route_coordinates.csv", "data/contours_coordinates.csv");
-
-let myYScale = d3.scaleLinear()
-    .range([0, j]);
+let data = loadData("data/route_coordinates.csv", "data/dem_pts.csv");
 
 let color = d3.scaleLinear()
-    // .domain(myYScale.range())
     .interpolate(d3.interpolateHcl)
-    .range([d3.rgb("#007AFF"), d3.rgb('#FFF500')]);
+    .range([d3.rgb("#007AFF"), d3.rgb("#FFF500")]);
 
 
 data.then(csvData => {
-    color.domain([csvData.ELEV.min / 30, csvData.ELEV.max / 30]);
+    color.domain([0, /* (csvData.ELEV.max - csvData.ELEV.min) / 20 */100]);
 
     init(csvData);
 
-    d3.selectAll('button').on('click', () => {
+    d3.selectAll("button").on("click", () => {
         flatview = !flatview;
         init(csvData);
     });
 })
 
-
-
-
-var grid3d = d3._3d()
-    .shape('GRID', 20)
-    .origin(origin)
-    .rotateY(startAngle)
-    .rotateX(-startAngle)
-    .scale(scale);
-
-var point3d = d3._3d()
+var surface3d = d3._3d()
+    .scale(scale)
     .x(function (d) { return d.x; })
     .y(function (d) { return d.y; })
     .z(function (d) { return d.z; })
     .origin(origin)
     .rotateY(startAngle)
     .rotateX(-startAngle)
-    .scale(scale);
+    .shape("SURFACE", 20);
 
-var yScale3d = d3._3d()
-    .shape('LINE_STRIP')
-    .origin(origin)
-    .rotateY(startAngle)
-    .rotateX(-startAngle)
-    .scale(scale);
 
 var route3d = d3._3d()
-    .shape('LINE_STRIP')
+    .shape("LINE_STRIP")
     .origin(origin)
     .rotateY(startAngle)
     .rotateX(-startAngle)
@@ -69,102 +52,45 @@ var route3d = d3._3d()
 
 function processData(data, tt) {
 
-    /* ----------- GRID ----------- */
+    /* ----------- surface3d ----------- */
 
-    var xGrid = svg.selectAll('path.grid').data(data[0], key);
+    let planes = svg.selectAll("path.surface").data(data[0], function (d) { return d.plane; });
 
-    xGrid
+    planes
         .enter()
-        .append('path')
-        .attr('class', '_3d grid')
-        .merge(xGrid)
-        .attr('stroke', 'black')
-        .attr('stroke-width', 0.3)
-        .attr('fill', function (d) { return d.ccw ? 'lightgrey' : '#717171'; })
-        .attr('fill-opacity', 0.9)
-        .attr('d', grid3d.draw);
-
-    xGrid.exit().remove();
-
-    /* ----------- POINTS ----------- */
-
-    var points = svg.selectAll('circle').data(data[1], key);
-
-    points
-        .enter()
-        .append('circle')
-        .attr('class', '_3d')
-        .attr('opacity', 0)
-        .attr('cx', posPointX)
-        .attr('cy', posPointY)
-        .merge(points)
+        .append("path")
+        .attr("class", "_3d surface")
+        .attr("fill", "blue")
+        .attr("opacity", 0)
+        .attr("stroke-opacity", 0.1)
+        .merge(planes)
+        .attr("stroke", "black")
         .transition().duration(tt)
-        .attr('r', 3)
-        .attr('stroke', d => d3.color(color(d.y)).darker(3))
-        .attr('fill', d => color(d.y))
-        .attr('opacity', 1)
-        .attr('cx', posPointX)
-        .attr('cy', posPointY);
+        .attr("opacity", 1)
+        .attr("fill", "blue")
+        .attr("d", surface3d.draw);
 
-    points.exit().remove();
+    planes.exit().remove();
 
 
     /* ----------- hiking route ----------- */
 
-    var hikingRoutePath = svg.selectAll('path.hikingRoutePath').data(data[3]);
+    let hikingRoutePath = svg.selectAll("path.hikingRoutePath").data(data[1]);
 
     hikingRoutePath
         .enter()
-        .append('path')
-        .attr('class', '_3d hikingRoutePath')
+        .append("path")
+        .attr("class", "_3d hikingRoutePath")
         .merge(hikingRoutePath)
         .transition().duration(tt)
-        .attr('fill', 'none')
-        .attr('stroke', d => color(d.y))
-        .attr('stroke-width', 2)
-        .attr('d', route3d.draw);
+        .attr("fill", "none")
+        .attr("stroke", d => color(d.y))
+        .attr("stroke-width", 2)
+        .attr("d", route3d.draw);
 
     hikingRoutePath.exit().remove();
 
-
-    /* ----------- y-Scale ----------- */
-
-    var yScale = svg.selectAll('path.yScale').data(data[2]);
-
-    yScale
-        .enter()
-        .append('path')
-        .attr('class', '_3d yScale')
-        .merge(yScale)
-        .transition().duration(tt)
-        .attr('stroke', 'black')
-        .attr('stroke-width', .5)
-        .attr('d', yScale3d.draw);
-
-    yScale.exit().remove();
-
-    /* ----------- y-Scale Text ----------- */
-
-    var yText = svg.selectAll('text.yText').data(data[2][0]);
-
-    yText
-        .enter()
-        .append('text')
-        .attr('class', '_3d yText')
-        .attr('dx', '.3em')
-        .merge(yText)
-        .transition().duration(tt)
-        .each(function (d) {
-            d.centroid = { x: d.rotated.x, y: d.rotated.y, z: d.rotated.z };
-        })
-        .attr('x', function (d) { return d.projected.x; })
-        .attr('y', function (d) { return d.projected.y; })
-        .text((d) => flatview ? "" : myYScale.invert(d[1]));
-
-    yText.exit().remove();
-
-
-    d3.selectAll('._3d').sort(d3._3d().sort);
+    d3.selectAll("._3d").sort(d3._3d().sort);
 }
 
 function posPointX(d) {
@@ -176,51 +102,27 @@ function posPointY(d) {
 }
 
 function init(csvData) {
-    xGrid = [], scatter = [], yLine = [];
+
+    plane = [];
+    csvData.contoursData.forEach(row => {
+        plane.push({ x: row.X, y: row.ELEV, z: row.Y })
+    });
+
+    debugger
     for (var z = -j; z < j; z = z + j / 10) {
         for (var x = -j; x < j; x = x + j / 10) {
-            xGrid.push([x, -1, z]);
+            plane.push({ x: x, y: Math.random() * 100, z: z })
         }
     }
 
     hikingRoute = [];
     csvData.routeData.forEach(row => {
-        hikingRoute.push([row.X / 30, flatview ? 0 : row.ELEV / 30, row.Y / 30])
-    });
-
-    csvData.contoursData.forEach((row, index) => {
-        scatter.push({
-            x: row.X / 30,
-            y: flatview ? 0 : row.ELEV / 30,
-            z: row.Y / 30,
-            id: 'point_' + index
-        });
-    });
-
-    // contours = [];
-    // let id;
-    // let index = 0;
-    // csvData.contoursData.forEach(row => {
-    //     if (!id) id = row.ID;
-    //     if (id !== row.ID) {
-    //         index++;
-    //         id = row.ID;
-    //     }
-    //     if (!contours[index]) contours[index] = new Array();
-    //     contours[index].push([row.X / 30, flatview ? 0 : row.ELEV / 30, row.Y / 30]);
-    // });
-
-
-    yLine = [];
-    d3.range(0, j, j / 10).forEach(d => {
-        yLine.push([-j, flatview ? 0 : d, j])
+        hikingRoute.push([row.X, flatview ? 0 : row.ELEV, row.Y])
     });
 
 
     var data = [
-        grid3d(xGrid),
-        point3d(scatter),
-        yScale3d([yLine]),
+        surface3d(plane),
         route3d([hikingRoute])
     ];
     processData(data, 1000);
@@ -237,9 +139,7 @@ function dragged() {
     beta = (d3.event.x - mx + mouseX) * Math.PI / 230;
     alpha = (d3.event.y - my + mouseY) * Math.PI / 230 * (-1);
     var data = [
-        grid3d.rotateY(beta + startAngle).rotateX(alpha - startAngle)(xGrid),
-        point3d.rotateY(beta + startAngle).rotateX(alpha - startAngle)(scatter),
-        yScale3d.rotateY(beta + startAngle).rotateX(alpha - startAngle)([yLine]),
+        surface3d.rotateY(beta + startAngle).rotateX(alpha - startAngle)(plane),
         route3d.rotateY(beta + startAngle).rotateX(alpha - startAngle)([hikingRoute])
     ];
     processData(data, 0);
@@ -249,8 +149,6 @@ function dragEnd() {
     mouseX = d3.event.x - mx + mouseX;
     mouseY = d3.event.y - my + mouseY;
 }
-
-
 
 
 function loadData(routePath, contoursPath) {
@@ -276,18 +174,8 @@ function loadData(routePath, contoursPath) {
                 });
             });
 
-
-            dataObject.routeData.forEach(row => {
-                row.X -= dataObject.X.min;
-                row.Y -= dataObject.Y.min;
-                row.ELEV -= dataObject.ELEV.min;
-            });
-
-            dataObject.contoursData.forEach(row => {
-                row.X -= dataObject.X.min;
-                row.Y -= dataObject.Y.min;
-                row.ELEV -= dataObject.ELEV.min;
-            });
+            dataObject.contoursData = updateCoordinates(dataObject, dataObject.contoursData, 20);
+            dataObject.routeData = updateCoordinates(dataObject, dataObject.routeData, 20);
 
             resolve(dataObject);
         });
@@ -295,12 +183,19 @@ function loadData(routePath, contoursPath) {
 }
 
 
+function updateCoordinates(dataObject, data, constant) {
+    data.forEach(row => {
+        row.X = (row.X - dataObject.X.min - (dataObject.X.max - dataObject.X.min) / 2) / constant;
+        row.Y = (row.Y - dataObject.Y.min - (dataObject.Y.max - dataObject.Y.min) / 2) / constant;
+        row.ELEV = (row.ELEV - dataObject.ELEV.min) / constant;
+    });
+    return data;
+}
+
+
 function getCSVData(path) {
     return new Promise(resolve => {
-        let dataObject = {
-            data: new Array()
-        }
-
+        let dataObject = { data: new Array() };
         d3.csv(path, data => {
             data.forEach(row => {
                 let rowObject = new Object();
@@ -318,10 +213,7 @@ function getCSVData(path) {
                             }
                         }
                         else {
-                            dataObject[`${colName}`] = {
-                                min: rowObject[`${colName}`],
-                                max: rowObject[`${colName}`]
-                            }
+                            dataObject[`${colName}`] = { min: rowObject[`${colName}`], max: rowObject[`${colName}`] }
                         }
                     }
                 });
