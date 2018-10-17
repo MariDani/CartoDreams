@@ -1,20 +1,22 @@
-var origin = [450, 300], j = 200, scale = 1
+const origin = [450, 300], j = 200
+const scale = 1;
 let yLine = []
 let hikingRoute = [];
 let beta = 0, alpha = 0, startAngle = Math.PI / 4;
-var svg = d3.select("svg")
+
+let svg = d3.select("svg")
     .call(d3.drag()
         .on("drag", dragged)
         .on("start", dragStart)
         .on("end", dragEnd))
     .append("g");
 
-var mx, my, mouseX, mouseY;
+let mx, my, mouseX, mouseY;
 
 let flatview = true;
 
 // load csv data
-let data = loadData("data/route_coordinates.csv", "data/dem_pts.csv");
+let data = loadData("data/route_coordinates.csv", "data/test7.csv");
 
 let color = d3.scaleLinear()
     .interpolate(d3.interpolateHcl)
@@ -22,7 +24,7 @@ let color = d3.scaleLinear()
 
 
 data.then(csvData => {
-    color.domain([0, /* (csvData.ELEV.max - csvData.ELEV.min) / 20 */100]);
+    color.domain([0, csvData.ELEV.max - csvData.ELEV.min]);
 
     init(csvData);
 
@@ -52,26 +54,6 @@ var route3d = d3._3d()
 
 function processData(data, tt) {
 
-    /* ----------- surface3d ----------- */
-
-    let planes = svg.selectAll("path.surface").data(data[0], function (d) { return d.plane; });
-
-    planes
-        .enter()
-        .append("path")
-        .attr("class", "_3d surface")
-        .attr("fill", "blue")
-        .attr("opacity", 0)
-        .attr("stroke-opacity", 0.1)
-        .merge(planes)
-        .attr("stroke", "black")
-        .transition().duration(tt)
-        .attr("opacity", 1)
-        .attr("fill", "blue")
-        .attr("d", surface3d.draw);
-
-    planes.exit().remove();
-
 
     /* ----------- hiking route ----------- */
 
@@ -90,6 +72,36 @@ function processData(data, tt) {
 
     hikingRoutePath.exit().remove();
 
+    /* ----------- surface3d ----------- */
+
+    let planes = svg.selectAll("path.surface").data(data[0], function (d) { return d.plane; });
+
+    planes
+        .enter()
+        .append("path")
+        .attr("class", "_3d surface")
+        .attr("fill", d => {
+            let sumY = 0;
+            d.forEach(corner => sumY = sumY + corner.y);
+            return color(sumY / 4)
+        })
+        .attr("opacity", 0)
+        .attr("stroke-opacity", 0.1)
+        .merge(planes)
+        .attr("stroke", "black")
+        .transition().duration(tt)
+        .attr("opacity", 1)
+        .attr("fill", d => {
+            let sumY = 0;
+            d.forEach(corner => sumY = sumY + corner.y);
+            return color(sumY / 4)
+        })
+        .attr("d", surface3d.draw);
+
+    planes.exit().remove();
+
+
+
     d3.selectAll("._3d").sort(d3._3d().sort);
 }
 
@@ -103,21 +115,30 @@ function posPointY(d) {
 
 function init(csvData) {
 
-    plane = [];
-    csvData.contoursData.forEach(row => {
-        plane.push({ x: row.X, y: row.ELEV, z: row.Y })
-    });
+    const roundedX = Math.floor(csvData.X.max);
+    const roundedY = Math.floor(csvData.Y.max);
+    const DEMSize = 10;
 
-    debugger
-    for (var z = -j; z < j; z = z + j / 10) {
-        for (var x = -j; x < j; x = x + j / 10) {
-            plane.push({ x: x, y: Math.random() * 100, z: z })
+    const scaleX = d3.scaleLinear()
+        .domain([-roundedX, roundedX])
+        .range([-j, j])
+
+    const scaleZ = d3.scaleLinear()
+        .domain([-roundedY, roundedY])
+        .range([-j, j])
+
+    plane = [];
+    let DEMindex = 0;
+    for (let z = -j; z < j; z = z + j /* * 2 */ / DEMSize) {
+        for (let x = -j; x < j; x = x + j /* * 2 */ / DEMSize) {
+            plane.push({ x: x, y: flatview ? 0: csvData.DEMData[Math.round(DEMindex/((j+j)/(10*10)))].ELEV, z: z })
+            DEMindex++;
         }
     }
 
     hikingRoute = [];
     csvData.routeData.forEach(row => {
-        hikingRoute.push([row.X, flatview ? 0 : row.ELEV, row.Y])
+        hikingRoute.push([scaleX(row.X), flatview ? 0 : row.ELEV, scaleZ(row.Y)])
     });
 
 
@@ -151,16 +172,16 @@ function dragEnd() {
 }
 
 
-function loadData(routePath, contoursPath) {
+function loadData(routePath, DEMPath) {
     return new Promise(resolve => {
 
         let dataObject = {}
         let routeData = getCSVData(routePath);
-        let contoursData = getCSVData(contoursPath);
+        let DEMData = getCSVData(DEMPath);
 
-        Promise.all([routeData, contoursData]).then(files => {
+        Promise.all([routeData, DEMData]).then(files => {
             dataObject.routeData = files[0].data;
-            dataObject.contoursData = files[1].data;
+            dataObject.DEMData = files[1].data;
 
             files.forEach(file => {
                 Object.entries(file).forEach(([key, value]) => {
@@ -174,8 +195,15 @@ function loadData(routePath, contoursPath) {
                 });
             });
 
-            dataObject.contoursData = updateCoordinates(dataObject, dataObject.contoursData, 20);
+            dataObject.DEMData = updateCoordinates(dataObject, dataObject.DEMData, 20);
             dataObject.routeData = updateCoordinates(dataObject, dataObject.routeData, 20);
+
+            dataObject.X = updateMinMax(dataObject.X, 20);
+            dataObject.Y = updateMinMax(dataObject.Y, 20);
+            const newELEVmin = (dataObject.ELEV.min - dataObject.ELEV.min) / 20;
+            const newELEVmax = (dataObject.ELEV.max - dataObject.ELEV.min) / 20;
+            dataObject.ELEV.min = newELEVmin;
+            dataObject.ELEV.max = newELEVmax;
 
             resolve(dataObject);
         });
@@ -190,6 +218,14 @@ function updateCoordinates(dataObject, data, constant) {
         row.ELEV = (row.ELEV - dataObject.ELEV.min) / constant;
     });
     return data;
+}
+
+function updateMinMax(minMaxObject, constant) {
+    let newMin = (minMaxObject.min - minMaxObject.min - (minMaxObject.max - minMaxObject.min) / 2) / constant;
+    let newMax = (minMaxObject.max - minMaxObject.min - (minMaxObject.max - minMaxObject.min) / 2) / constant;
+    minMaxObject.min = newMin;
+    minMaxObject.max = newMax;
+    return minMaxObject;
 }
 
 
