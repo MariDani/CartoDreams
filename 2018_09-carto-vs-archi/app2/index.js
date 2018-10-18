@@ -2,7 +2,7 @@ const origin = [450, 300], j = 200
 const scale = 1;
 let hikingRoute = [];
 let heightPoints = [];
-let beta = 0, alpha = 0, startAngle = Math.PI / 4;
+let beta = 0, alpha = 0, startAngle = Math.PI / 4, key = function (d) { return d.id; };
 
 let svg = d3.select("svg")
     .call(d3.drag()
@@ -74,7 +74,7 @@ function processData(data, tt) {
 
     /* ----------- height points ----------- */
 
-    let points = svg.selectAll("circle").data(data[1]);
+    let points = svg.selectAll("circle").data(data[1], key);
 
     points
         .enter()
@@ -86,7 +86,7 @@ function processData(data, tt) {
         .merge(points)
         .transition().duration(tt)
         .attr('r', 2)
-        .attr('stroke', d => color(d.y))
+        .attr('stroke', d => d3.color(color(d.y)).darker(2) )
         .attr('fill', d => color(d.y))
         .attr('opacity', 1)
         .attr('cx', posPointX)
@@ -119,9 +119,10 @@ function init(csvData) {
         .domain([-roundedY, roundedY])
         .range([-j, j])
 
+    let cnt = 0;
     heightPoints = [];
     csvData.DEMData.forEach(row => {
-        heightPoints.push({ x: scaleX(row.X), y: flatview ? 0 : row.ELEV, z: scaleZ(row.Y) })
+        heightPoints.push({ x: scaleX(row.X), y: flatview ? 0 : row.ELEV, z: scaleZ(row.Y), id: 'point_' + cnt++ })
     });
 
     hikingRoute = [];
