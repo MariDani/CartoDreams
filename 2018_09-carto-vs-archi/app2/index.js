@@ -1,7 +1,7 @@
 const origin = [450, 300], j = 200
 const scale = 1;
-let yLine = []
 let hikingRoute = [];
+let heightPoints = [];
 let beta = 0, alpha = 0, startAngle = Math.PI / 4;
 
 let svg = d3.select("svg")
@@ -34,17 +34,6 @@ data.then(csvData => {
     });
 })
 
-var surface3d = d3._3d()
-    .scale(scale)
-    .x(function (d) { return d.x; })
-    .y(function (d) { return d.y; })
-    .z(function (d) { return d.z; })
-    .origin(origin)
-    .rotateY(startAngle)
-    .rotateX(-startAngle)
-    .shape("SURFACE", 20);
-
-
 var route3d = d3._3d()
     .shape("LINE_STRIP")
     .origin(origin)
@@ -52,19 +41,30 @@ var route3d = d3._3d()
     .rotateX(-startAngle)
     .scale(scale);
 
-function processData(data, tt) {
+var point3d = d3._3d()
+    .x(function (d) { return d.x; })
+    .y(function (d) { return d.y; })
+    .z(function (d) { return d.z; })
+    .origin(origin)
+    .rotateY(startAngle)
+    .rotateX(-startAngle)
+    .scale(scale);
 
+
+function processData(data, tt) {
 
     /* ----------- hiking route ----------- */
 
-    let hikingRoutePath = svg.selectAll("path.hikingRoutePath").data(data[1]);
+    let hikingRoutePath = svg.selectAll("path.hikingRoutePath").data(data[0]);
 
     hikingRoutePath
         .enter()
         .append("path")
         .attr("class", "_3d hikingRoutePath")
+        .attr('opacity', 0)
         .merge(hikingRoutePath)
         .transition().duration(tt)
+        .attr('opacity', 1)
         .attr("fill", "none")
         .attr("stroke", d => color(d.y))
         .attr("stroke-width", 2)
@@ -72,34 +72,27 @@ function processData(data, tt) {
 
     hikingRoutePath.exit().remove();
 
-    /* ----------- surface3d ----------- */
+    /* ----------- height points ----------- */
 
-    let planes = svg.selectAll("path.surface").data(data[0], function (d) { return d.plane; });
+    let points = svg.selectAll("circle").data(data[1]);
 
-    planes
+    points
         .enter()
-        .append("path")
-        .attr("class", "_3d surface")
-        .attr("fill", d => {
-            let sumY = 0;
-            d.forEach(corner => sumY = sumY + corner.y);
-            return color(sumY / 4)
-        })
-        .attr("opacity", 0)
-        .attr("stroke-opacity", 0.1)
-        .merge(planes)
-        .attr("stroke", "black")
+        .append('circle')
+        .attr('class', '_3d')
+        .attr('cx', posPointX)
+        .attr('cy', posPointY)
+        .attr('opacity', 0)
+        .merge(points)
         .transition().duration(tt)
-        .attr("opacity", 1)
-        .attr("fill", d => {
-            let sumY = 0;
-            d.forEach(corner => sumY = sumY + corner.y);
-            return color(sumY / 4)
-        })
-        .attr("d", surface3d.draw);
+        .attr('r', 2)
+        .attr('stroke', d => color(d.y))
+        .attr('fill', d => color(d.y))
+        .attr('opacity', 1)
+        .attr('cx', posPointX)
+        .attr('cy', posPointY);
 
-    planes.exit().remove();
-
+    points.exit().remove();
 
 
     d3.selectAll("._3d").sort(d3._3d().sort);
@@ -117,7 +110,6 @@ function init(csvData) {
 
     const roundedX = Math.floor(csvData.X.max);
     const roundedY = Math.floor(csvData.Y.max);
-    const DEMSize = 10;
 
     const scaleX = d3.scaleLinear()
         .domain([-roundedX, roundedX])
@@ -127,14 +119,10 @@ function init(csvData) {
         .domain([-roundedY, roundedY])
         .range([-j, j])
 
-    plane = [];
-    let DEMindex = 0;
-    for (let z = -j; z < j; z = z + j /* * 2 */ / DEMSize) {
-        for (let x = -j; x < j; x = x + j /* * 2 */ / DEMSize) {
-            plane.push({ x: x, y: flatview ? 0: csvData.DEMData[Math.round(DEMindex/((j+j)/(10*10)))].ELEV, z: z })
-            DEMindex++;
-        }
-    }
+    heightPoints = [];
+    csvData.DEMData.forEach(row => {
+        heightPoints.push({ x: scaleX(row.X), y: flatview ? 0 : row.ELEV, z: scaleZ(row.Y) })
+    });
 
     hikingRoute = [];
     csvData.routeData.forEach(row => {
@@ -143,8 +131,8 @@ function init(csvData) {
 
 
     var data = [
-        surface3d(plane),
-        route3d([hikingRoute])
+        route3d([hikingRoute]),
+        point3d(heightPoints)
     ];
     processData(data, 1000);
 }
@@ -160,8 +148,8 @@ function dragged() {
     beta = (d3.event.x - mx + mouseX) * Math.PI / 230;
     alpha = (d3.event.y - my + mouseY) * Math.PI / 230 * (-1);
     var data = [
-        surface3d.rotateY(beta + startAngle).rotateX(alpha - startAngle)(plane),
-        route3d.rotateY(beta + startAngle).rotateX(alpha - startAngle)([hikingRoute])
+        route3d.rotateY(beta + startAngle).rotateX(alpha - startAngle)([hikingRoute]),
+        point3d.rotateY(beta + startAngle).rotateX(alpha - startAngle)(heightPoints)
     ];
     processData(data, 0);
 }
