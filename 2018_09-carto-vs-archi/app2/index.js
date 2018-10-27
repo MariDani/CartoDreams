@@ -11,20 +11,29 @@ let svg = d3.select("svg")
         .on("end", dragEnd))
     .append("g");
 
+let scaleLine = svg.append("g")
+    .append("line")
+
+let scaleText = svg.append("g")
+    .append("text")
+
 let mx, my, mouseX, mouseY;
 
 let flatview = true;
 
+let distance = [0, 0];
+
 // load csv data
-let data = loadData("data/route_coordinates.csv", "data/test7.csv");
+let data = loadData("data/route_coordinates.csv", "data/height-points5.csv");
 
 let color = d3.scaleLinear()
     .interpolate(d3.interpolateHcl)
-    .range([d3.rgb("#007AFF"), d3.rgb("#FFF500")]);
+    .range([d3.rgb("#4fb576"), d3.rgb("#44c489"), d3.rgb("#28a9ae"), d3.rgb("#28a2b7"), d3.rgb("#4c7788"), d3.rgb("#6c4f63"), d3.rgb("#432c39")]);
 
 
 data.then(csvData => {
-    color.domain([0, csvData.ELEV.max - csvData.ELEV.min]);
+    const colorDomain = csvData.ELEV.max - csvData.ELEV.min;
+    color.domain([colorDomain * 0, colorDomain * 0.3, colorDomain * 0.46, colorDomain * 0.59, colorDomain * 0.71, colorDomain * 0.86, colorDomain]);
 
     init(csvData);
 
@@ -53,6 +62,30 @@ var point3d = d3._3d()
 
 function processData(data, tt) {
 
+
+
+    scaleLine
+        .attr("x1", 300)
+        .attr("y1", 450)
+        .attr("y2", 450)
+        .attr("stroke-width", 2)
+        .attr("stroke", d3.rgb("#e21b46"))
+        .transition().duration(tt)
+        .attr("x2", flatview ? 300 + distance[0] / 21.5 : 300 + distance[1] / 21.5);
+
+    scaleText
+        .attr("x", 300)
+        .attr("y", 465)
+        .attr("fill", d3.rgb("#e21b46"))
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "12px")
+        .transition().duration(tt / 3)
+        .style("opacity", 0.3)
+        .transition().duration(tt / 3 * 2)
+        .text(flatview ? `${Math.round(distance[0])} m` : `${Math.round(distance[1])} m`)
+        .style("opacity", 1)
+
+
     /* ----------- hiking route ----------- */
 
     let hikingRoutePath = svg.selectAll("path.hikingRoutePath").data(data[0]);
@@ -66,7 +99,7 @@ function processData(data, tt) {
         .transition().duration(tt)
         .attr('opacity', 1)
         .attr("fill", "none")
-        .attr("stroke", d => color(d.y))
+        .attr("stroke", d3.rgb("#e21b46"))
         .attr("stroke-width", 2)
         .attr("d", route3d.draw);
 
@@ -86,7 +119,9 @@ function processData(data, tt) {
         .merge(points)
         .transition().duration(tt)
         .attr('r', 2)
-        .attr('stroke', d => d3.color(color(d.y)).darker(2) )
+        .attr('stroke', d => d3.color(color(d.y)))
+        .attr("stroke-opacity", 0.2)
+        .attr("stroke-width", 2)
         .attr('fill', d => color(d.y))
         .attr('opacity', 1)
         .attr('cx', posPointX)
@@ -106,28 +141,32 @@ function posPointY(d) {
     return d.projected.y;
 }
 
+let scaleX = d3.scaleLinear();
+let scaleZ = d3.scaleLinear();
+
 function init(csvData) {
 
     const roundedX = Math.floor(csvData.X.max);
     const roundedY = Math.floor(csvData.Y.max);
 
-    const scaleX = d3.scaleLinear()
+    scaleX
         .domain([-roundedX, roundedX])
         .range([-j, j])
 
-    const scaleZ = d3.scaleLinear()
+    scaleZ
         .domain([-roundedY, roundedY])
         .range([-j, j])
 
     let cnt = 0;
     heightPoints = [];
+
     csvData.DEMData.forEach(row => {
         heightPoints.push({ x: scaleX(row.X), y: flatview ? 0 : row.ELEV, z: scaleZ(row.Y), id: 'point_' + cnt++ })
     });
 
     hikingRoute = [];
     csvData.routeData.forEach(row => {
-        hikingRoute.push([scaleX(row.X), flatview ? 0 : row.ELEV, scaleZ(row.Y)])
+        hikingRoute.push([scaleX(row.X), flatview ? 2 : row.ELEV + 2, scaleZ(row.Y)])
     });
 
 
@@ -183,6 +222,18 @@ function loadData(routePath, DEMPath) {
                     }
                 });
             });
+
+            for (let idx = 0; idx < dataObject.routeData.length - 1; idx++) {
+
+                const vector = [
+                    dataObject.routeData[idx + 1].X - dataObject.routeData[idx].X,
+                    dataObject.routeData[idx + 1].ELEV - dataObject.routeData[idx].ELEV,
+                    dataObject.routeData[idx + 1].Y - dataObject.routeData[idx].Y
+                ]
+
+                distance[0] = distance[0] + Math.sqrt(vector[0] * vector[0] + vector[2] * vector[2]);
+                distance[1] = distance[1] + Math.sqrt(vector[0] * vector[0] + vector[1] * vector[1] + vector[2] * vector[2]);
+            }
 
             dataObject.DEMData = updateCoordinates(dataObject, dataObject.DEMData, 20);
             dataObject.routeData = updateCoordinates(dataObject, dataObject.routeData, 20);
